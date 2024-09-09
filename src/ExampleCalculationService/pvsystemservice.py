@@ -58,6 +58,8 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
     def init_calculation_service(self, energy_system: esdl.EnergySystem):
         LOGGER.info("init calculation service")
+        self.surface_area: dict[EsdlId, float] = {}
+        self.panel_efficiency: dict[EsdlId, float] = {}
         #
         for esdl_id in self.simulator_configuration.esdl_ids:
             LOGGER.info(f"Iterate over esdl ids: {esdl_id}")
