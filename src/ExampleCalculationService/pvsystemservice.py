@@ -16,7 +16,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
         subscriptions_values = [
             SubscriptionDescription(esdl_type="EnvironmentalProfiles",
                                     input_name="solar_irradiance",
-                                    input_unit="W",
+                                    input_unit="Wm2",
                                     input_type=h.HelicsDataType.VECTOR)
         ]
 
