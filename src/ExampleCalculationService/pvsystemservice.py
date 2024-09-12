@@ -28,17 +28,17 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
         #                            data_type=h.HelicsDataType.VECTOR)
         # ]
 
-        e_connection_period_in_seconds = 900
+        pvsystem_period_in_seconds = 900
 
         calculation_information = HelicsCalculationInformation(
-            time_period_in_seconds=e_connection_period_in_seconds,
+            time_period_in_seconds=pvsystem_period_in_seconds,
             offset=0,
             uninterruptible=False,
             wait_for_current_time_update=False,
             terminate_on_error=True,
             calculation_name="predict_solar_power",
             inputs=subscriptions_values,
-            outputs=None,
+            outputs=[],
             calculation_function=self.predict_solar_power
         )
         self.add_calculation(calculation_information)
