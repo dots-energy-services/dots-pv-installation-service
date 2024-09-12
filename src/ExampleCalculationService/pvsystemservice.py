@@ -43,18 +43,18 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
         )
         self.add_calculation(calculation_information)
 
-        # subscriptions_values = [
-        #     SubscriptionDescription("EnvironmentalProfiles", "solar_irradiance_up_to_next_day", "Wm2", h.HelicsDataType.VECTOR)
-        # ]
-        #
+        subscriptions_values = [
+            SubscriptionDescription("EnvironmentalProfiles", "solar_irradiance_up_to_next_day", "Wm2", h.HelicsDataType.VECTOR)
+        ]
+
         # publication_values = [
         #     PublicationDescription(True, "EConnection", "Schedule", "W", h.HelicsDataType.VECTOR)
         # ]
-        #
-        # e_connection_period_in_seconds = 900
-        #
-        # calculation_information_schedule = HelicsCalculationInformation(e_connection_period_in_seconds, 0, False, False, True, "potential_active_power_up_to_next_day", [], publication_values, self.potential_active_power_up_to_next_day)
-        # self.add_calculation(calculation_information_schedule)
+
+        pvsystem_period_in_seconds = 900
+
+        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 0, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, [], self.potential_active_power_up_to_next_day)
+        self.add_calculation(calculation_information_schedule)
 
     def init_calculation_service(self, energy_system: esdl.EnergySystem):
         LOGGER.info("init calculation service")
@@ -90,8 +90,30 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         # ret_val = {}
         # ret_val["potential_active_power"] = solar_power
-        print(solar_power)
+        print('predicted_solar_power',solar_power)
         # self.influx_connector.set_time_step_data_point(esdl_id, "EConnectionDispatch", simulation_time, ret_val["EConnectionDispatch"])
+        return
+
+    def potential_active_power_up_to_next_day(self, param_dict : dict, simulation_time : datetime, time_step_number : TimeStepInformation, esdl_id : EsdlId, energy_system : EnergySystem):
+        LOGGER.info("calculation 'potential_active_power_up_to_next_day' started")
+        # Receive solar irradiance data from param_dict.
+        solar_irradiance = param_dict["solar_irradiance_up_to_next_day"]
+        if solar_irradiance:
+            # # temporary for test without esdl:
+            # surface_area = self.surface_area
+            # panel_efficiency = self.panel_efficiency
+            # Real values for calculation:
+            surface_area = self.surface_area[esdl_id]
+            panel_efficiency = self.panel_efficiency[esdl_id]
+            assert surface_area > 0.0, "provide surface area with value bigger than 0"
+            assert panel_efficiency > 0.0, "provide panel efficiency with value bigger than 0"
+            solar_power = [panel_efficiency * surface_area * irr for irr in solar_irradiance]
+        else:
+            solar_power = []
+
+        # ret_val = {}
+        # ret_val["potential_active_power_up_to_next_day"] = solar_power
+        print('potential_active_power_up_to_next_day', solar_power)
         return
 
 if __name__ == "__main__":
