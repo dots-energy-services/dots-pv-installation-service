@@ -78,9 +78,9 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
     def predict_solar_power(self, param_dict : dict, simulation_time : datetime, time_step_number : TimeStepInformation, esdl_id : EsdlId, energy_system : EnergySystem):
         LOGGER.info("calculation 'predict_solar_power' started")
         LOGGER.info(param_dict)
-        LOGGER.info(get_vector_param_with_name(param_dict, "solar_irradiance"))
+        LOGGER.info(get_vector_param_with_name(param_dict, "solar_irradiance")[0])
         # Receive solar irradiance data from param_dict.
-        solar_irradiance = get_vector_param_with_name(param_dict, "solar_irradiance")
+        solar_irradiance = get_vector_param_with_name(param_dict, "solar_irradiance")[0]
         surface_area = self.surface_area[esdl_id]
         panel_efficiency = self.panel_efficiency[esdl_id]
         # # temporary for test without esdl:
