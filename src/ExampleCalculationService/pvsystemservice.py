@@ -101,8 +101,8 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
         LOGGER.info("calculation 'potential_active_power_up_to_next_day' started")
         LOGGER.info(get_vector_param_with_name(param_dict, "solar_irradiance_up_to_next_day")[0])
         # Receive solar irradiance data from param_dict.
-        solar_irradiance = get_vector_param_with_name(param_dict, "solar_irradiance_up_to_next_day")[0]
-        if solar_irradiance:
+        solar_irradiance_up_to_next_day = get_vector_param_with_name(param_dict, "solar_irradiance_up_to_next_day")[0]
+        if solar_irradiance_up_to_next_day:
             # # temporary for test without esdl:
             # surface_area = self.surface_area
             # panel_efficiency = self.panel_efficiency
@@ -111,13 +111,13 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
             panel_efficiency = self.panel_efficiency[esdl_id]
             assert surface_area > 0.0, "provide surface area with value bigger than 0"
             assert panel_efficiency > 0.0, "provide panel efficiency with value bigger than 0"
-            solar_power = [panel_efficiency * surface_area * irr for irr in solar_irradiance]
+            solar_power_up_to_next_day = [panel_efficiency * surface_area * irr for irr in solar_irradiance_up_to_next_day]
         else:
-            solar_power = []
+            solar_power_up_to_next_day = []
 
         # ret_val = {}
         # ret_val["potential_active_power_up_to_next_day"] = solar_power
-        print('potential_active_power_up_to_next_day', solar_power)
+        print('potential_active_power_up_to_next_day', solar_power_up_to_next_day)
         return
 
 if __name__ == "__main__":
