@@ -21,13 +21,13 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
                                     input_type=h.HelicsDataType.VECTOR)
         ]
 
-        # publication_values = [
-        #     PublicationDescription(global_flag=True,
-        #                            esdl_type="PVInstallation",
-        #                            output_name="potential_active_power",
-        #                            output_unit="W",
-        #                            data_type=h.HelicsDataType.VECTOR)
-        # ]
+        publication_values = [
+            PublicationDescription(global_flag=True,
+                                   esdl_type="PVInstallation",
+                                   output_name="potential_active_power",
+                                   output_unit="W",
+                                   data_type=h.HelicsDataType.VECTOR)
+        ]
 
         pvsystem_period_in_seconds = 900
 
@@ -39,7 +39,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
             terminate_on_error=True,
             calculation_name="predict_solar_power",
             inputs=subscriptions_values,
-            outputs=[],
+            outputs=publication_values,
             calculation_function=self.predict_solar_power
         )
         self.add_calculation(calculation_information)
@@ -48,13 +48,13 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
             SubscriptionDescription("EnvironmentalProfiles", "solar_irradiance_up_to_next_day", "Wm2", h.HelicsDataType.VECTOR)
         ]
 
-        # publication_values = [
-        #     PublicationDescription(True, "EConnection", "Schedule", "W", h.HelicsDataType.VECTOR)
-        # ]
+        publication_values = [
+            PublicationDescription(True, "PVInstallation", "potential_active_power_up_to_next_day", "W", h.HelicsDataType.VECTOR)
+        ]
 
         pvsystem_period_in_seconds = 900
 
-        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 0, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, [], self.potential_active_power_up_to_next_day)
+        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 0, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, publication_values, self.potential_active_power_up_to_next_day)
         self.add_calculation(calculation_information_schedule)
 
     def init_calculation_service(self, energy_system: esdl.EnergySystem):
@@ -91,11 +91,11 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         solar_power = [panel_efficiency * surface_area * irr for irr in solar_irradiance]
 
-        # ret_val = {}
-        # ret_val["potential_active_power"] = solar_power
+        ret_val = {}
+        ret_val["potential_active_power"] = solar_power
         print('predicted_solar_power',solar_power)
         # self.influx_connector.set_time_step_data_point(esdl_id, "EConnectionDispatch", simulation_time, ret_val["EConnectionDispatch"])
-        return
+        return ret_val
 
     def potential_active_power_up_to_next_day(self, param_dict : dict, simulation_time : datetime, time_step_number : TimeStepInformation, esdl_id : EsdlId, energy_system : EnergySystem):
         LOGGER.info("calculation 'potential_active_power_up_to_next_day' started")
@@ -115,10 +115,10 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
         else:
             solar_power_up_to_next_day = []
 
-        # ret_val = {}
-        # ret_val["potential_active_power_up_to_next_day"] = solar_power
+        ret_val = {}
+        ret_val["potential_active_power_up_to_next_day"] = solar_power_up_to_next_day
         print('potential_active_power_up_to_next_day', solar_power_up_to_next_day)
-        return
+        return ret_val
 
 if __name__ == "__main__":
 
