@@ -76,6 +76,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
     def predict_solar_power(self, param_dict : dict, simulation_time : datetime, time_step_number : TimeStepInformation, esdl_id : EsdlId, energy_system : EnergySystem):
         LOGGER.info("calculation 'predict_solar_power' started")
+        LOGGER.info(param_dict)
         # Receive solar irradiance data from param_dict.
         solar_irradiance = param_dict["solar_irradiance"]
         surface_area = self.surface_area[esdl_id]
@@ -96,6 +97,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
     def potential_active_power_up_to_next_day(self, param_dict : dict, simulation_time : datetime, time_step_number : TimeStepInformation, esdl_id : EsdlId, energy_system : EnergySystem):
         LOGGER.info("calculation 'potential_active_power_up_to_next_day' started")
+        LOGGER.info(param_dict)
         # Receive solar irradiance data from param_dict.
         solar_irradiance = param_dict["solar_irradiance_up_to_next_day"]
         if solar_irradiance:
