@@ -54,7 +54,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         pvsystem_period_in_seconds = 900
 
-        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 0, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, publication_values, self.potential_active_power_up_to_next_day)
+        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 1, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, publication_values, self.potential_active_power_up_to_next_day)
         self.add_calculation(calculation_information_schedule)
 
     def init_calculation_service(self, energy_system: esdl.EnergySystem):
