@@ -33,7 +33,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         calculation_information = HelicsCalculationInformation(
             time_period_in_seconds=pvsystem_period_in_seconds,
-            offset=0,
+            offset=1,
             uninterruptible=False,
             wait_for_current_time_update=False,
             terminate_on_error=True,
