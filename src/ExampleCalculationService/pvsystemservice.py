@@ -3,7 +3,7 @@ from datetime import datetime
 from esdl import esdl
 import helics as h
 import logging
-from dots_infrastructure.DataClasses import EsdlId, HelicsCalculationInformation, PublicationDescription, SubscriptionDescription, TimeStepInformation
+from dots_infrastructure.DataClasses import EsdlId, HelicsCalculationInformation, PublicationDescription, SubscriptionDescription, TimeStepInformation, TimeRequestType
 from dots_infrastructure.HelicsFederateHelpers import HelicsSimulationExecutor
 from dots_infrastructure.Logger import LOGGER
 from dots_infrastructure.CalculationServiceHelperFunctions import get_vector_param_with_name
@@ -33,7 +33,8 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         calculation_information = HelicsCalculationInformation(
             time_period_in_seconds=pvsystem_period_in_seconds,
-            offset=1,
+            time_request_type=TimeRequestType.ON_INPUT,
+            offset=0,
             uninterruptible=False,
             wait_for_current_time_update=False,
             terminate_on_error=True,
@@ -54,7 +55,7 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         pvsystem_period_in_seconds = 900
 
-        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds, 1, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, publication_values, self.potential_active_power_up_to_next_day)
+        calculation_information_schedule = HelicsCalculationInformation(pvsystem_period_in_seconds,TimeRequestType.ON_INPUT, 0, False, False, True, "potential_active_power_up_to_next_day",subscriptions_values, publication_values, self.potential_active_power_up_to_next_day)
         self.add_calculation(calculation_information_schedule)
 
     def init_calculation_service(self, energy_system: esdl.EnergySystem):
