@@ -33,7 +33,6 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         calculation_information = HelicsCalculationInformation(
             time_period_in_seconds=pvsystem_period_in_seconds,
-            time_request_type=TimeRequestType.ON_INPUT,
             offset=0,
             uninterruptible=False,
             wait_for_current_time_update=False,
@@ -47,7 +46,6 @@ class CalculationServicePVSystem(HelicsSimulationExecutor):
 
         calculation_information = HelicsCalculationInformation(
             time_period_in_seconds=pvsystem_period_in_seconds,
-            time_request_type=TimeRequestType.ON_INPUT,
             offset=0,
             uninterruptible=False,
             wait_for_current_time_update=False,
