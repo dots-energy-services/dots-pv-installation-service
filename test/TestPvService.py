@@ -13,7 +13,7 @@ START_DATE_TIME = datetime(2024, 1, 1, 0, 0, 0)
 SIMULATION_DURATION_IN_SECONDS = 960
 
 def simulator_environment_e_connection():
-    return SimulatorConfiguration("PVInstallation", ["3a7d4da8-3104-4640-ab70-b6a2b28986fc"], "Mock-PVInstallation", "127.0.0.1", BROKER_TEST_PORT, "3a7d4da8-3104-4640-ab70-b6a2b28986fc", SIMULATION_DURATION_IN_SECONDS, START_DATE_TIME, "test-host", "test-port", "test-username", "test-password", "test-database-name", h.HelicsLogLevel.DEBUG, ["PVInstallation", "EConnection"])
+    return SimulatorConfiguration("PVInstallation", ["03443715-c345-45b2-9b95-bd6906ac9c83"], "Mock-PVInstallation", "127.0.0.1", BROKER_TEST_PORT, "3a7d4da8-3104-4640-ab70-b6a2b28986fc", SIMULATION_DURATION_IN_SECONDS, START_DATE_TIME, "test-host", "test-port", "test-username", "test-password", "test-database-name", h.HelicsLogLevel.DEBUG, ["PVInstallation", "EConnection"])
 
 class Test(unittest.TestCase):
 
@@ -35,10 +35,12 @@ class Test(unittest.TestCase):
         service.init_calculation_service(self.energy_system)
 
         # Execute
-        ret_val = service.predict_solar_power(pv_dispatch_params, datetime(2024,1,1), TimeStepInformation(1,2), "3a7d4da8-3104-4640-ab70-b6a2b28986fc", self.energy_system)
+        ret_val = service.predict_solar_power(pv_dispatch_params, datetime(2024,1,1), TimeStepInformation(1,2), "03443715-c345-45b2-9b95-bd6906ac9c83", self.energy_system)
 
         # Assert
-        expected_outcome = [0.2 * 14 * irr for irr in pv_dispatch_params["solar_irradiance"]]
+        panel_efficiency = 0.2
+        surface_area = 32
+        expected_outcome = [panel_efficiency * surface_area * irr for irr in pv_dispatch_params["solar_irradiance"]]
         self.assertListEqual(ret_val["potential_active_power"], expected_outcome)
 
 if __name__ == '__main__':
