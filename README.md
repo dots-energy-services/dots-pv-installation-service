@@ -2,6 +2,8 @@
 
 This calculation service calculates the active power produced by a PV installation based upon the weather.
 
+Solar irradiance inputs are interpreted as global horizontal irradiance (GHI). The service uses pvlib's Erbs decomposition, isotropic transposition to calculate the irradiance of the pv panels. Power output is then calculated as surface area * irradiance * efficiency. Surface area and efficiency are taken from the esdl file.
+
 ## Calculations
 
 ### predict solar power 
