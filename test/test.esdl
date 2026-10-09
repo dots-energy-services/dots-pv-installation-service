@@ -1338,11 +1338,11 @@
           <port xsi:type="esdl:InPort" name="InPh3" connectedTo="9bded07a-3478-4781-8185-811fa0aa2b7c" id="40f47fbd-80bd-458e-aa60-92ffad6200be"/>
           <geometry xsi:type="esdl:Point" lon="445.0" CRS="Simple" lat="260.0"/>
         </asset>
-        <asset xsi:type="esdl:PVInstallation" powerFactor="1.0" name="pv_Home1" panelEfficiency="0.2" surfaceArea="32" id="03443715-c345-45b2-9b95-bd6906ac9c83">
+        <asset xsi:type="esdl:PVInstallation" powerFactor="1.0" name="pv_Home1" panelEfficiency="0.2" surfaceArea="14" angle="35" orientation="150" id="03443715-c345-45b2-9b95-bd6906ac9c83">
           <port xsi:type="esdl:OutPort" connectedTo="f599f684-4742-4f92-9d07-a00c60e2c7e2" id="1c993355-75a7-475e-a7df-98b466eed351"/>
           <port xsi:type="esdl:OutPort" connectedTo="5c8f029c-2d7d-426b-8a0a-0fa3b0b8271d" id="4fcdfbeb-a03a-4b76-bc95-321209f9e1f1"/>
           <port xsi:type="esdl:OutPort" connectedTo="88cfd7b8-2201-40d5-b6fb-f089d9791362" id="c2f19962-8ce0-4582-811e-df578c38f9ef"/>
-          <geometry xsi:type="esdl:Point" lon="236.0" CRS="Simple" lat="415.0"/>
+          <geometry xsi:type="esdl:Point" lon="51.535759" CRS="Simple" lat="3.897843" />
         </asset>
         <asset xsi:type="esdl:EVChargingStation" powerFactor="1.0" description="{&quot;arrival_ptus&quot;: [174], &quot;departure_ptus&quot;: [221], &quot;arrival_socs&quot;: [152611200.0], &quot;departure_socs&quot;: [244800000.0], &quot;max_soc&quot;: 244800000.0, &quot;efficiency&quot;: 1.0}" name="chargingstation_Home1" power="11000.0" id="0ff9e0be-d450-4bd3-b2a8-9c5b729c31e0">
           <port xsi:type="esdl:InPort" connectedTo="85715f41-aef6-4d76-a3c5-64b11f67589a" id="42169dc0-af96-42e5-8097-fedd85fca0c2"/>
@@ -1686,13 +1686,13 @@
           </port>
           <port xsi:type="esdl:InPort" name="InPh2" connectedTo="0d8170e5-3c39-49ab-aa67-aa03c203922b" id="ecb71050-5ab1-47f3-821e-a36fab53c829"/>
           <port xsi:type="esdl:InPort" name="InPh3" connectedTo="d3fd4deb-8866-47a5-888a-8a2185abd704" id="7dccef6f-6fce-46c8-b8b5-c5525e9149b1"/>
-          <geometry xsi:type="esdl:Point" lon="445.0" CRS="Simple" lat="260.0"/>
+          <geometry xsi:type="esdl:Point" lon="51.535759" CRS="Simple" lat="3.897843" />
         </asset>
-        <asset xsi:type="esdl:PVInstallation" powerFactor="1.0" name="pv_Home2" panelEfficiency="0.2" surfaceArea="32" id="c554fe94-1272-4cbd-a0cf-0daec7d47402">
+        <asset xsi:type="esdl:PVInstallation" powerFactor="1.0" name="pv_Home2" panelEfficiency="0.2" surfaceArea="14" angle="35" orientation="150" id="c554fe94-1272-4cbd-a0cf-0daec7d47402">
           <port xsi:type="esdl:OutPort" connectedTo="c5d1dc7e-5788-44ab-aab6-38981128853a" id="a109e594-50a0-4031-a72a-16f024eeaab9"/>
           <port xsi:type="esdl:OutPort" connectedTo="8a211bfa-b696-4d49-88bf-cda05a6ef595" id="5ff29471-6753-4853-96fe-04aeb63e72f3"/>
           <port xsi:type="esdl:OutPort" connectedTo="b4934d13-391d-4a9a-8322-864d4415f29f" id="870e7660-7279-4ef1-b729-e58cc7620ba3"/>
-          <geometry xsi:type="esdl:Point" lon="236.0" CRS="Simple" lat="415.0"/>
+          <geometry xsi:type="esdl:Point" lon="51.535759" CRS="Simple" lat="3.897843"/>
         </asset>
         <asset xsi:type="esdl:HybridHeatPump" powerFactor="0.95" description="{&quot;buffer_capacitance&quot;: 752940.0, &quot;buffer_temp_set&quot;: 313.15, &quot;buffer_temp_min&quot;: 298.15, &quot;buffer_temp_max&quot;: 338.15, &quot;buffer_temp_0&quot;: 315.93853596915767, &quot;buffer_temp_hor&quot;: 313.15, &quot;house_temp_set&quot;: 291.65, &quot;house_temp_min&quot;: 290.84999999999997, &quot;house_temp_max&quot;: 292.45, &quot;house_temp_0&quot;: 291.8432403998078, &quot;house_temp_hor&quot;: 291.65}" name="hhp_Home2" heatPumpThermalPower="9000.0" assetType="vrijst+1975-1991+one_person" id="f9502a6a-982b-4df9-98b4-c2c6345267ac" heatPumpCOP="3.5">
           <port xsi:type="esdl:InPort" connectedTo="8d137777-60f1-4d9a-8a75-81d9d202aff9" id="7d815cde-5664-47c2-9090-adbb0eda84d5"/>

@@ -18,7 +18,10 @@ classifiers = [
 ]
 dependencies = [
   "helics==3.6.1",
-  "dots_infrastructure==1.0.9"
+  "dots_infrastructure==1.0.9",
+  "pyesdl==22.11.2",
+  "numpy>=1.26",
+  "pvlib==0.13.1"
 ]
 
 [project.urls]
